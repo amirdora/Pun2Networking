@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - FirstPersonController
     - GameManager
+    - Gun
     - NetworkManager
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
@@ -67,6 +68,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13904}
     - Class: 114
       Script: {instanceID: 14690}
+    - Class: 114
+      Script: {instanceID: 18370}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -76,6 +79,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     Assets/Scenes/Lobby.unity:
     - Class: 1
@@ -126,6 +133,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13244}
     - Class: 114
       Script: {instanceID: 13904}
+    - Class: 114
+      Script: {instanceID: 18370}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -137,6 +146,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -803,7 +816,7 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: aee66737a5d735a2f35a9941f89c27aa
+      Hash: 131778b1c5b48153878b1a4bfd05ee5e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FirstPersonController
@@ -813,6 +826,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: b745083e6f2f10cda7fe1a7e25dddaa1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Gun
   platform: 2
   scenePathNames:
   - Assets/Scenes/Lobby.unity

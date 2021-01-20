@@ -4,7 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class FirstPersonController : MonoBehaviourPunCallbacks
+public class FirstPersonController : MonoBehaviourPunCallbacks, IPunObservable
 {
     /// <summary>
     /// Move the player charactercontroller based on horizontal and vertical axis input
@@ -20,7 +20,7 @@ public class FirstPersonController : MonoBehaviourPunCallbacks
     [Range(5f, 15f)] public float jumpSpeed = 10f;
 
     //now the camera so we can move it up and down
-    Transform cameraTransform;
+    public Transform cameraTransform;
     float pitch = 0f;
     [Range(1f, 90f)] public float maxPitch = 85f;
     [Range(-1f, -90f)] public float minPitch = -85f;
@@ -28,11 +28,10 @@ public class FirstPersonController : MonoBehaviourPunCallbacks
 
     //the charachtercompononet for moving us
     CharacterController cc;
-
+    
     private void Start()
     {
         cc = GetComponent<CharacterController>();
-        cameraTransform = GetComponentInChildren<Camera>().transform;
         if(!photonView.IsMine)
         {
             GetComponentInChildren<Camera>().enabled = false;
@@ -61,6 +60,11 @@ public class FirstPersonController : MonoBehaviourPunCallbacks
         pitch -= yInput;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         //create the local rotation value for the camera and set it
+        AdjustPitchQuaternion();
+    }
+
+    private void AdjustPitchQuaternion()
+    {
         Quaternion rot = Quaternion.Euler(pitch, 0, 0);
         cameraTransform.localRotation = rot;
     }
@@ -88,5 +92,19 @@ public class FirstPersonController : MonoBehaviourPunCallbacks
         move.y = yVelocity;
         //and finally move
         cc.Move(move * Time.deltaTime);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(pitch);
+        }
+        else
+        {
+            pitch = (float) stream.ReceiveNext();
+            AdjustPitchQuaternion();
+
+        }
     }
 }
