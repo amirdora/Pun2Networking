@@ -10,6 +10,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Connect();
     }
 
+    private void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
     private void Connect()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -24,6 +29,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
        Debug.Log("Tried to join a room and failed");
        // most likely because there is no room
+       PhotonNetwork.CreateRoom(null, new RoomOptions{MaxPlayers = 4});
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("joined a room");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(1);
+        }
     }
 
     // Update is called once per frame

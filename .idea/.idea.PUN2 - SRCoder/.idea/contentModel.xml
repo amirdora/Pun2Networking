@@ -6,6 +6,7 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="GameManager.cs" t="Include" />
         <e p="NetworkManager.cs" t="Include" />
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
@@ -171,6 +172,11 @@
                 <e p="TextToggleIsOnTransition.cs" t="Include" />
               </e>
             </e>
+          </e>
+        </e>
+        <e p="Simple First Person Controller" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="FirstPersonController.cs" t="Include" />
           </e>
         </e>
       </e>
